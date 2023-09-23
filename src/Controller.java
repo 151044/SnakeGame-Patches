@@ -9,7 +9,7 @@ public class Controller extends Thread {
     private Point head;
     private int length = 3;
     private final long GAME_SPEED = 50;
-    private final List<Point> positions = new ArrayList<Point>();
+    private final List<Point> positions = new ArrayList<>();
     private Point foodPosition;
     public Controller(Point positionDepart, List<List<SquareData>> lists) {
         squares = lists;

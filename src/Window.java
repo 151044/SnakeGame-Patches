@@ -33,10 +33,6 @@ class Window extends JFrame {
                 getContentPane().add(grid.get(i).get(j).getPanel());
             }
         }
-
-        // initial position of the snake
-        Point position = new Point(10, 10);
-        // passing this value to the controller
         controller = new Controller(new Point(10, 10), grid);
         //Let's start the game now
         controller.start();

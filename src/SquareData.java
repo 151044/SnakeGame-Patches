@@ -6,7 +6,7 @@ public class SquareData {
 
     // Static list of colors
     private static final List<Color> COLORS = List.of(Color.DARK_GRAY, Color.BLUE, Color.WHITE);
-    private SquarePanel square;
+    private final SquarePanel square;
 
     public SquareData(int color) {
         square = new SquarePanel(COLORS.get(color));
