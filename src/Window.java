@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class Window extends JFrame {
-    private static List<List<SquareData>> grid;
-    public static int width = 20;
-    public static int height = 20;
+public class Window extends JFrame {
+    private List<List<SquareData>> grid;
+    private int width = 20;
+    private int height = 20;
 
 	private final Controller controller;
 
@@ -33,11 +33,18 @@ class Window extends JFrame {
                 getContentPane().add(grid.get(i).get(j).getPanel());
             }
         }
-        controller = new Controller(new Point(10, 10), grid);
+        controller = new Controller(new Point(10, 10), grid, this);
         //Let's start the game now
         controller.start();
 
         // Links the window to the KeyboardListener
         this.addKeyListener(new KeyHandler(controller));
+    }
+
+    public int width() {
+        return width;
+    }
+    public int height() {
+        return height;
     }
 }

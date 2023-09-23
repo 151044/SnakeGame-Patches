@@ -11,7 +11,7 @@ public class Controller extends Thread {
     private final long GAME_SPEED = 50;
     private final List<Point> positions = new ArrayList<>();
     private Point foodPosition;
-    public Controller(Point positionDepart, List<List<SquareData>> lists) {
+    public Controller(Point positionDepart, List<List<SquareData>> lists, Window window) {
         squares = lists;
 
         head = new Point(positionDepart.x(), positionDepart.y());
@@ -20,7 +20,7 @@ public class Controller extends Thread {
         Point headPos = new Point(head.x(), head.y());
         positions.add(headPos);
 
-        foodPosition = new Point(Window.height - 1, Window.width - 1);
+        foodPosition = new Point(window.height() - 1, window.width() - 1);
         spawnFood(foodPosition);
 
     }
