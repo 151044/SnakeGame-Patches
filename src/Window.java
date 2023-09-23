@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Window extends JFrame {
     private List<List<SquareData>> grid;
-    private int width = 20;
-    private int height = 20;
+    private final int width = 20;
+    private final int height = 20;
 
 	private final Controller controller;
 
