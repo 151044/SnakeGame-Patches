@@ -1,19 +1,15 @@
 import java.awt.*;
-import java.util.List;
 
 public class SquareData {
 
-
-    // Static list of colors
-    private static final List<Color> COLORS = List.of(Color.DARK_GRAY, Color.BLUE, Color.WHITE);
     private final SquarePanel square;
 
-    public SquareData(int color) {
-        square = new SquarePanel(COLORS.get(color));
+    public SquareData(Color color) {
+        square = new SquarePanel(color);
     }
 
-    public void light(int c) {
-        square.setColor(COLORS.get(c));
+    public void light(Color color) {
+        square.setColor(color);
     }
 
     public SquarePanel getPanel() {

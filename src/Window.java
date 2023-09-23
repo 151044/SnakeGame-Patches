@@ -18,7 +18,7 @@ public class Window extends JFrame {
         for (int i = 0; i < width; i++) {
             data = new ArrayList<>();
             for (int j = 0; j < height; j++) {
-                SquareData c = new SquareData(2);
+                SquareData c = new SquareData(Color.WHITE);
                 data.add(c);
             }
             grid.add(data);

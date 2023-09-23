@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,15 +50,15 @@ public class Controller extends Thread {
 
     //Checking if the snake bites itself or is eating
     private void checkCollision() {
-        Point posCritique = positions.get(positions.size() - 1);
+        Point criticalPos = positions.get(positions.size() - 1);
         for (int i = 0; i <= positions.size() - 2; i++) {
-            boolean biteItself = posCritique.x() == positions.get(i).x() && posCritique.y() == positions.get(i).y();
+            boolean biteItself = criticalPos.x() == positions.get(i).x() && criticalPos.y() == positions.get(i).y();
             if (biteItself) {
                 stopTheGame();
             }
         }
 
-        boolean eatingFood = posCritique.x() == foodPosition.x() && posCritique.y() == foodPosition.y();
+        boolean eatingFood = criticalPos.x() == foodPosition.x() && criticalPos.y() == foodPosition.y();
         if (eatingFood) {
             System.out.println("Yummy!");
             length = length + 1;
@@ -70,27 +71,27 @@ public class Controller extends Thread {
     //Stops the game
     private void stopTheGame() {
         System.out.println("You lose!");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            // we're exiting anyways, ignore
+        }
+        System.exit(0);
     }
 
     //Put food in a position and displays it
     private void spawnFood(Point pos) {
-        squares.get(pos.x()).get(pos.y()).light(1);
+        squares.get(pos.x()).get(pos.y()).light(Color.BLUE);
     }
 
     //return a position not occupied by the snake
     private Point getUnoccupied() {
         Point p;
-        int ranX = (int) (Math.random() * 19);
-        int ranY = (int) (Math.random() * 19);
-        p = new Point(ranX, ranY);
-        for (int i = 0; i <= positions.size() - 1; i++) {
-            if (p.y() == positions.get(i).x() && p.x() == positions.get(i).y()) {
-                ranX = (int) (Math.random() * 19);
-                ranY = (int) (Math.random() * 19);
-                p = new Point(ranX, ranY);
-                i = 0;
-            }
-        }
+        do  {
+            int ranX = (int) (Math.random() * 19);
+            int ranY = (int) (Math.random() * 19);
+            p = new Point(ranX, ranY);
+        } while (positions.contains(p));
         return p;
     }
 
@@ -132,7 +133,7 @@ public class Controller extends Thread {
         for (Point t : positions) {
             int y = t.x();
             int x = t.y();
-            squares.get(x).get(y).light(0);
+            squares.get(x).get(y).light(Color.DARK_GRAY);
         }
     }
 
@@ -143,7 +144,7 @@ public class Controller extends Thread {
         for (int i = positions.size() - 1; i >= 0; i--) {
             if (cmpt == 0) {
                 Point t = positions.get(i);
-                squares.get(t.y()).get(t.x()).light(2);
+                squares.get(t.y()).get(t.x()).light(Color.WHITE);
             } else {
                 cmpt--;
             }
